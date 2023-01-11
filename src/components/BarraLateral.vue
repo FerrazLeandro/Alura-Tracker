@@ -1,41 +1,42 @@
 <template>
     <header>
         <h1>
-            <img src="../assets/logo.png" alt="Logo Alura Tracker">
+            <img src="../assets/logo.png" alt="Logo Ferraz Task">
         </h1>
-        <button class="button" @click="alterarTema">
-            {{ tema }}
-        </button>
+        <Botao @click="alterarTema" :icone=tema texto=""/>
     </header>
 </template>
 
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import Botao from './Botao.vue';
 
 export default defineComponent({
-    name: 'BarraLateral',
-    emits: ['aoTemaAlterado'],
-    data () {
+    name: "BarraLateral",
+    emits: ["aoTemaAlterado"],
+    data() {
         return {
-           modoEscuroAtivo : false 
-        }
+            modoEscuroAtivo: false
+        };
     },
     computed: {
-        tema () {
+        tema() {
             if (this.modoEscuroAtivo) {
-                return 'Ligth'
-            } else {
-                return 'Dark'
+                return "fa-sharp fa-solid fa-sun";
+            }
+            else {
+                return "fa-sharp fa-solid fa-moon";
             }
         }
     },
     methods: {
-        alterarTema () {
-            this.modoEscuroAtivo = !this.modoEscuroAtivo
-            this.$emit('aoTemaAlterado', this.modoEscuroAtivo)
+        alterarTema() {
+            this.modoEscuroAtivo = !this.modoEscuroAtivo;
+            this.$emit("aoTemaAlterado", this.modoEscuroAtivo);
         }
-    }
+    },
+    components: { Botao }
 })
 </script>
 
